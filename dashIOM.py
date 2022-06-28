@@ -36,10 +36,6 @@ data, correl, questions, codes = load_data()
 img1 = Image.open("logoAxiom.png")
 img2 = Image.open("logoIOM.png")
 
-names = ['Axiom','IOM']
-usernames = ['axiom','iomsomalia']
-passwords = ['axiomadmin','schools']
-
 #st.write(questions)
 
 def main():
@@ -119,15 +115,4 @@ def main():
 
 if __name__ == '__main__':
 	
-	hashed_passwords = stauth.Hasher(passwords).generate()
-	authenticator = stauth.Authenticate(names,usernames,hashed_passwords)
-	name, authentication_status, username = authenticator.login('Login','main')
-	
-	if authentication_status:
-		authenticator.logout('Logout', 'main')
-		main()
-	elif authentication_status == False:
-		st.error('Username/password is incorrect')
-	elif authentication_status == None:
-		st.warning('Please enter your username and password')
-
+	main()
