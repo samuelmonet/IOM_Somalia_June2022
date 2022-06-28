@@ -1,0 +1,380 @@
+list name,name,label,code,color
+Consent,1,Yes,,
+Consent,2,No,,
+emailconsent,1,Yes,,
+emailconsent,2,No,,
+yesno,1,Yes,,
+yesno,2,No,,
+testvalid,1,Valid,,
+testvalid,2,Test,,
+gender,Male,Male,,
+gender,Female,Female,,
+rltptohhhead,1,Respondent is head of household,1,
+rltptohhhead,2,I am Sister to HH-head,2,
+rltptohhhead,3,I am Brother to HH-head,2,
+rltptohhhead,4,I am Husband to HH-head,2,
+rltptohhhead,5,I am Co-wife to HH-head,2,
+rltptohhhead,6,I am Wife to HH-head,2,
+rltptohhhead,7,I am Son to HH-head,2,
+rltptohhhead,8,I am daughter to HH-head,2,
+rltptohhhead,9,I am other relative to HH-head,2,
+rltptohhhead,10,I am other non-relative to HH-head,2,
+rltptohhhead,11,I am servant (live-in) to HH-head,2,
+rltptohhhead,12,I am father to HH-head,2,
+rltptohhhead,13,I am mother to HH-head,2,
+rltptohhhead,14,I am foster child to HH-head,2,
+educ,1,Quranic,1,blue
+educ,2,Some primary,1,red
+educ,3,Completed primary,2,orange
+educ,4,Some secondary,3,gold
+educ,5,Completed secondary,4,yellow
+educ,6,Some university,5,lightgreen
+educ,7,Completed university,6,green
+educ,8,Graduate degree,7,darkgreen
+educ,9,No education,0,darkred
+educ,10,Vocational Training,4,black
+educ,11,I don’t wish to answer,888,grey
+residency,1,IDP,0,yellow
+residency,2,Returnee IDP,1,blue
+residency,3,Returnee refugee,1,purple
+residency,4,Host Community,2,green
+schooltype,1,Formal,,
+schooltype,2,Madrassa,,
+conflicts,1,Land issues,,
+conflicts,2,Clan tension,,
+conflicts,3,Political tension,,
+conflicts,4,Crime (robbery,...),
+conflicts,5,Gender based violence,,
+conflicts,6,Terrorist attacks,,
+conflicts,7,Access to grazing area,,
+conflicts,8,Access to water,,
+conflicts,9,Business competition,,
+conflicts,99,Others (explain),,
+employment,1,Employed,,
+employment,2,Unemployed,,
+employment,3,Self employed,,
+primaryincome,1,Farming,,
+primaryincome,2,Livestock,,
+primaryincome,3,Fishing,,
+primaryincome,4,Trading,,
+primaryincome,5,Employment,,
+primaryincome,6,Petty business,,
+primaryincome,7,Support from community and family,,
+primaryincome,8,Support from aid agencies,,
+primaryincome,9,Casual work,,
+primaryincome,10,others,,
+primaryincome,11,Don’t know,,
+primaryincome,12,I don’t wish to answer,,
+primaryincome,99,Other, please specify,
+instability_drivers,1,Conflict,,
+instability_drivers,2,Governance,,
+instability_drivers,3,Clan tension,,
+instability_drivers,4,Security in general,,
+instability_drivers,5,Drought,,
+instability_drivers,6,Flood,,
+instability_drivers,7,Level of incomes,,
+instability_drivers,8,Access to education,,
+instability_drivers,9,Access to health,,
+instability_drivers,10,Access to water,,
+instability_drivers,11,Access to justice,,
+instability_drivers,12,Access to land,,
+rank0,1,Not determinant of instability,5,green
+rank0,2,2,4,lightgreen
+rank0,3,3,3,yellow
+rank0,4,4,2,orange
+rank0,5,Key determinant of instability,1,red
+needs,1,Health,,
+needs,2,Education,,
+needs,3,Security,,
+needs,4,Protection,,
+needs,5,Food and Nutrition,,
+needs,6,Roads,,
+needs,7,Water and sanitation,,
+rank1,1,Very Bad,1,red
+rank1,2,2,2,orange
+rank1,3,3,3,yellow
+rank1,4,4,4,lightgreen
+rank1,5,Very Good,5,green
+rank2,1,Significantly decreased,1,red
+rank2,2,Slightly decreased,2,orange
+rank2,3,No change,3,yellow
+rank2,4,Slightly increased,4,lightgreen
+rank2,5,Significantly increased,5,green
+system,1,FGS,,
+system,2,FMS,,
+system,3,Governor,,
+system,4,DC,,
+system,5,Elders,,
+system,6,UN,,
+system,7,NGO,,
+system,99,Others,,
+score,1,Not important at all,1,red
+score,2,Somehow important,2,yellow
+score,3,Very important,3,lightgreen
+score,4,Determinant,4,green
+indicator1,Positive,Positive,1,green
+indicator1,Negative,Negative,0,red
+indicator2,1,Not optimistic at all,1,red
+indicator2,2,2,2,orange
+indicator2,3,3,3,yellow
+indicator2,4,4,4,lightgreen
+indicator2,5,Very Optimistic,5,green
+district,kismayo,Kismayo,,
+district,jamaame,Jamaame,,
+district,marka,Marka,,
+district,baraawe,Baraawe,,
+subdistrict,qamqam,QamQam,kismayo,
+subdistrict,bulagadud,Bulagadud,kismayo,
+subdistrict,yontoy,Yontoy,jamaame,
+subdistrict,markasubdistrict,Marka,marka,
+subdistrict,shalanbood,Shalanbood,marka,
+subdistrict,janaale,Janaale,marka,
+subdistrict,baraawesubdistrict,Baraawe,baraawe,
+primaryschool,school1,Qamqam Primary School,qamqam,
+primaryschool,school2,Bulagadud Primary School,bulagadud,
+primaryschool,school3,Yontoy Primary School,yontoy,
+primaryschool,school4,Jibril Macalin Barow Primary School,markasubdistrict,
+primaryschool,school5,Bulacadad Primary School,shalanbood,
+primaryschool,school6,Iftin Primary School,janaale,
+primaryschool,school7,Alnureyn Primary School,baraawesubdistrict,
+primaryschool,school8,Sh Bimalow Primary School,baraawesubdistrict,
+indicator3,1,Not optimistic at all,1,red
+indicator3,2,2,2,orange
+indicator3,3,3,3,yellow
+indicator3,4,4,4,lightgreen
+indicator3,5,Very Optimistic,5,green
+instability_factor1,1,Not determinant of instability,5,green
+instability_factor1,2,2,4,lightgreen
+instability_factor1,3,3,3,yellow
+instability_factor1,4,4,2,orange
+instability_factor1,5,Key determinant of instability,1,red
+instability_factor2,1,Not determinant of instability,5,green
+instability_factor2,2,2,4,lightgreen
+instability_factor2,3,3,3,yellow
+instability_factor2,4,4,2,orange
+instability_factor2,5,Key determinant of instability,1,red
+instability_factor3,1,Not determinant of instability,5,green
+instability_factor3,2,2,4,lightgreen
+instability_factor3,3,3,3,yellow
+instability_factor3,4,4,2,orange
+instability_factor3,5,Key determinant of instability,1,red
+instability_factor4,1,Not determinant of instability,5,green
+instability_factor4,2,2,4,lightgreen
+instability_factor4,3,3,3,yellow
+instability_factor4,4,4,2,orange
+instability_factor4,5,Key determinant of instability,1,red
+instability_factor5,1,Not determinant of instability,5,green
+instability_factor5,2,2,4,lightgreen
+instability_factor5,3,3,3,yellow
+instability_factor5,4,4,2,orange
+instability_factor5,5,Key determinant of instability,1,red
+instability_factor6,1,Not determinant of instability,5,green
+instability_factor6,2,2,4,lightgreen
+instability_factor6,3,3,3,yellow
+instability_factor6,4,4,2,orange
+instability_factor6,5,Key determinant of instability,1,red
+instability_factor7,1,Not determinant of instability,5,green
+instability_factor7,2,2,4,lightgreen
+instability_factor7,3,3,3,yellow
+instability_factor7,4,4,2,orange
+instability_factor7,5,Key determinant of instability,1,red
+instability_factor8,1,Not determinant of instability,5,green
+instability_factor8,2,2,4,lightgreen
+instability_factor8,3,3,3,yellow
+instability_factor8,4,4,2,orange
+instability_factor8,5,Key determinant of instability,1,red
+instability_factor9,1,Not determinant of instability,5,green
+instability_factor9,2,2,4,lightgreen
+instability_factor9,3,3,3,yellow
+instability_factor9,4,4,2,orange
+instability_factor9,5,Key determinant of instability,1,red
+instability_factor10,1,Not determinant of instability,5,green
+instability_factor10,2,2,4,lightgreen
+instability_factor10,3,3,3,yellow
+instability_factor10,4,4,2,orange
+instability_factor10,5,Key determinant of instability,1,red
+instability_factor11,1,Not determinant of instability,5,green
+instability_factor11,2,2,4,lightgreen
+instability_factor11,3,3,3,yellow
+instability_factor11,4,4,2,orange
+instability_factor11,5,Key determinant of instability,1,red
+instability_factor12,1,Not determinant of instability,5,green
+instability_factor12,2,2,4,lightgreen
+instability_factor12,3,3,3,yellow
+instability_factor12,4,4,2,orange
+instability_factor12,5,Key determinant of instability,1,red
+instability_factor13,1,Not determinant of instability,5,green
+instability_factor13,2,2,4,lightgreen
+instability_factor13,3,3,3,yellow
+instability_factor13,4,4,2,orange
+instability_factor13,5,Key determinant of instability,1,red
+instability_factor14,1,Not determinant of instability,5,green
+instability_factor14,2,2,4,lightgreen
+instability_factor14,3,3,3,yellow
+instability_factor14,4,4,2,orange
+instability_factor14,5,Key determinant of instability,1,red
+instability_factor15,1,Not determinant of instability,5,green
+instability_factor15,2,2,4,lightgreen
+instability_factor15,3,3,3,yellow
+instability_factor15,4,4,2,orange
+instability_factor15,5,Key determinant of instability,1,red
+instability_factor16,1,Not determinant of instability,5,green
+instability_factor16,2,2,4,lightgreen
+instability_factor16,3,3,3,yellow
+instability_factor16,4,4,2,orange
+instability_factor16,5,Key determinant of instability,1,red
+instability_factor17,1,Not determinant of instability,5,green
+instability_factor17,2,2,4,lightgreen
+instability_factor17,3,3,3,yellow
+instability_factor17,4,4,2,orange
+instability_factor17,5,Key determinant of instability,1,red
+trust1,1,Very Bad,1,red
+trust1,2,2,2,orange
+trust1,3,3,3,yellow
+trust1,4,4,4,lightgreen
+trust1,5,Very Good,5,green
+trust2,1,Very Bad,1,red
+trust2,2,2,2,orange
+trust2,3,3,3,yellow
+trust2,4,4,4,lightgreen
+trust2,5,Very Good,5,green
+trust3,1,Very Bad,1,red
+trust3,2,2,2,orange
+trust3,3,3,3,yellow
+trust3,4,4,4,lightgreen
+trust3,5,Very Good,5,green
+trust4,1,Very Bad,1,red
+trust4,2,2,2,orange
+trust4,3,3,3,yellow
+trust4,4,4,4,lightgreen
+trust4,5,Very Good,5,green
+trust5,1,Very Bad,1,red
+trust5,2,2,2,orange
+trust5,3,3,3,yellow
+trust5,4,4,4,lightgreen
+trust5,5,Very Good,5,green
+trust6,1,Very Bad,1,red
+trust6,2,2,2,orange
+trust6,3,3,3,yellow
+trust6,4,4,4,lightgreen
+trust6,5,Very Good,5,green
+trust7,1,Very Bad,1,red
+trust7,2,2,2,orange
+trust7,3,3,3,yellow
+trust7,4,4,4,lightgreen
+trust7,5,Very Good,5,green
+trust8,1,Very Bad,1,red
+trust8,2,2,2,orange
+trust8,3,3,3,yellow
+trust8,4,4,4,lightgreen
+trust8,5,Very Good,5,green
+security,1,Very Bad,1,red
+security,2,2,2,orange
+security,3,3,3,yellow
+security,4,4,4,lightgreen
+security,5,Very Good,5,green
+social_cohesion,1,Very Bad,1,red
+social_cohesion,2,2,2,orange
+social_cohesion,3,3,3,yellow
+social_cohesion,4,4,4,lightgreen
+social_cohesion,5,Very Good,5,green
+decision_making,1,Very Bad,1,red
+decision_making,2,2,2,orange
+decision_making,3,3,3,yellow
+decision_making,4,4,4,lightgreen
+decision_making,5,Very Good,5,green
+systm1,1,Significantly decreased,1,red
+systm1,2,Slightly decreased,2,orange
+systm1,3,No change,3,yellow
+systm1,4,Slightly increased,4,lightgreen
+systm1,5,Significantly increased,5,green
+systm2,1,Significantly decreased,1,red
+systm2,2,Slightly decreased,2,orange
+systm2,3,No change,3,yellow
+systm2,4,Slightly increased,4,lightgreen
+systm2,5,Significantly increased,5,green
+systm3,1,Significantly decreased,1,red
+systm3,2,Slightly decreased,2,orange
+systm3,3,No change,3,yellow
+systm3,4,Slightly increased,4,lightgreen
+systm3,5,Significantly increased,5,green
+systm4,1,Significantly decreased,1,red
+systm4,2,Slightly decreased,2,orange
+systm4,3,No change,3,yellow
+systm4,4,Slightly increased,4,lightgreen
+systm4,5,Significantly increased,5,green
+systm5,1,Significantly decreased,1,red
+systm5,2,Slightly decreased,2,orange
+systm5,3,No change,3,yellow
+systm5,4,Slightly increased,4,lightgreen
+systm5,5,Significantly increased,5,green
+systm6,1,Significantly decreased,1,red
+systm6,2,Slightly decreased,2,orange
+systm6,3,No change,3,yellow
+systm6,4,Slightly increased,4,lightgreen
+systm6,5,Significantly increased,5,green
+systm7,1,Significantly decreased,1,red
+systm7,2,Slightly decreased,2,orange
+systm7,3,No change,3,yellow
+systm7,4,Slightly increased,4,lightgreen
+systm7,5,Significantly increased,5,green
+systm8,1,Significantly decreased,1,red
+systm8,2,Slightly decreased,2,orange
+systm8,3,No change,3,yellow
+systm8,4,Slightly increased,4,lightgreen
+systm8,5,Significantly increased,5,green
+systm9,1,Significantly decreased,1,red
+systm9,2,Slightly decreased,2,orange
+systm9,3,No change,3,yellow
+systm9,4,Slightly increased,4,lightgreen
+systm9,5,Significantly increased,5,green
+armed_extremism,1,Significantly decreased,5,green
+armed_extremism,2,Slightly decreased,4,lightgreen
+armed_extremism,3,No change,3,yellow
+armed_extremism,4,Slightly increased,2,orange
+armed_extremism,5,Significantly increased,1,red
+engagement,1,Significantly decreased,1,red
+engagement,2,Slightly decreased,2,orange
+engagement,3,No change,3,yellow
+engagement,4,Slightly increased,4,lightgreen
+engagement,5,Significantly increased,5,green
+trust_obstacles1,1,Not important at all,1,red
+trust_obstacles1,2,Somehow important,2,yellow
+trust_obstacles1,3,Very important,3,lightgreen
+trust_obstacles1,4,Determinant,4,green
+trust_obstacles2,1,Not important at all,1,red
+trust_obstacles2,2,Somehow important,2,yellow
+trust_obstacles2,3,Very important,3,lightgreen
+trust_obstacles2,4,Determinant,4,green
+trust_obstacles3,1,Not important at all,1,red
+trust_obstacles3,2,Somehow important,2,yellow
+trust_obstacles3,3,Very important,3,lightgreen
+trust_obstacles3,4,Determinant,4,green
+trust_obstacles4,1,Not important at all,1,red
+trust_obstacles4,2,Somehow important,2,yellow
+trust_obstacles4,3,Very important,3,lightgreen
+trust_obstacles4,4,Determinant,4,green
+trust_obstacles5,1,Not important at all,1,red
+trust_obstacles5,2,Somehow important,2,yellow
+trust_obstacles5,3,Very important,3,lightgreen
+trust_obstacles5,4,Determinant,4,green
+trust_obstacles6,1,Not important at all,1,red
+trust_obstacles6,2,Somehow important,2,yellow
+trust_obstacles6,3,Very important,3,lightgreen
+trust_obstacles6,4,Determinant,4,green
+trust_obstacles7,1,Not important at all,1,red
+trust_obstacles7,2,Somehow important,2,yellow
+trust_obstacles7,3,Very important,3,lightgreen
+trust_obstacles7,4,Determinant,4,green
+trust_obstacles8,1,Not important at all,1,red
+trust_obstacles8,2,Somehow important,2,yellow
+trust_obstacles8,3,Very important,3,lightgreen
+trust_obstacles8,4,Determinant,4,green
+trust_obstacles9,1,Not important at all,1,red
+trust_obstacles9,2,Somehow important,2,yellow
+trust_obstacles9,3,Very important,3,lightgreen
+trust_obstacles9,4,Determinant,4,green
+trust_obstacles10,1,Not important at all,1,red
+trust_obstacles10,2,Somehow important,2,yellow
+trust_obstacles10,3,Very important,3,lightgreen
+trust_obstacles10,4,Determinant,4,green

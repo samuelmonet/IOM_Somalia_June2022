@@ -1,0 +1,204 @@
+,parent,type,Treatment,Other,question
+district,,,dummy,,Select District:
+subdistrict,,,dummy,,Select Sub-District:
+school,,,dummy,,Select Primary School of focus:
+village,,,dummy,,Enter village:
+gps,,,,,GPS
+latitude,,continue,latitude,,Latitude
+longitude,,continue,longitude,,Longitude
+gender resp,,,,,1) Select respondent's gender?
+Head_Household,,,,,2) Is interviewee the head of household?
+age resp,,continue,,,5)How old are you?
+gender_if_no,,,drop,,9) Gender of the household head:
+clan_hhhead,,,dummy,,10a)What is the Clan of the head of household?
+subclan_hhhead,,,dummy,,10b)What is the Sub-clan of the head of household?
+clan,,,dummy,,11a)What is your  Clan
+subclan,,,dummy,,11b) What are your Sub clan
+educ,,,to code,,12) What is your highest level of education?
+hh_ppl,,continue,,,13)How many people are living in your household?
+hh_male,,continue,,,Male:  (Number)
+hh_female,,continue,,,Female:  (Number)
+hh_children_size,,continue,,,How many children in this household children are aged 5 to 18 years old
+gender1,,,drop,,Gender
+age1,,,drop,,Age
+school1,,,drop,,Attend school ?
+schooltype1,,,drop,,Type of school
+level1,,,drop,,Level of school attended
+distance1,,continue,drop,,Enter approximate distance to school in KM:
+gender2,,,drop,,Gender
+age2,,,drop,,Age
+school2,,,drop,,Attend school ?
+schooltype2,,,drop,,Type of school
+level2,,,drop,,Level of school attended
+distance2,,,drop,,Enter approximate distance to school in KM:
+gender3,,,drop,,Gender
+age3,,,drop,,Age
+school3,,,drop,,Attend school ?
+schooltype3,,,drop,,Type of school
+level3,,,drop,,Level of school attended
+distance3,,,drop,,Enter approximate distance to school in KM:
+gender4,,,drop,,Gender
+age4,,,drop,,Age
+school4,,,drop,,Attend school ?
+schooltype4,,,drop,,Type of school
+level4,,,drop,,Level of school attended
+distance4,,,drop,,Enter approximate distance to school in KM:
+gender5,,,drop,,Gender
+age5,,,drop,,Age
+school5,,,drop,,Attend school ?
+schooltype5,,,drop,,Type of school
+level5,,,drop,,Level of school attended
+distance5,,,drop,,Enter approximate distance to school in KM:
+gender6,,,drop,,Gender
+age6,,,drop,,Age
+school6,,,drop,,Attend school ?
+schooltype6,,,drop,,Type of school
+level6,,,drop,,Level of school attended
+distance6,,,drop,,Enter approximate distance to school in KM:
+gender7,,,drop,,Gender
+age7,,,drop,,Age
+school7,,,drop,,Attend school ?
+schooltype7,,,drop,,Type of school
+level7,,,drop,,Level of school attended
+distance7,,,drop,,Enter approximate distance to school in KM:
+gender8,,,drop,,Gender
+age8,,,drop,,Age
+school8,,,drop,,Attend school ?
+schooltype8,,,drop,,Type of school
+level8,,,drop,,Level of school attended
+distance8,,,drop,,Enter approximate distance to school in KM:
+gender9,,,drop,,Gender
+age9,,,drop,,Age
+school9,,,drop,,Attend school ?
+schooltype9,,,drop,,Type of school
+level9,,,drop,,Level of school attended
+distance9,,,drop,,Enter approximate distance to school in KM:
+gender10,,,drop,,Gender
+age10,,,drop,,Age
+school10,,,drop,,Attend school ?
+schooltype10,,,drop,,Type of school
+level10,,,drop,,Level of school attended
+distance10,,,drop,,Enter approximate distance to school in KM:
+residency,,,to code,,15) What is your household's displacement status in your current location?
+first_driver,,,drop,,Most important
+second_driver,,,drop,,Second most important
+third_driver,,,drop,,Third most important
+fourth_driver,,,drop,,Fourth most important
+fifth_driver,,,drop,,Fifth most important
+primaryincome,,,dummy,,17) What is your household's PRIMARY source of income?
+otherincome,,,,,17b) Kindly specify other:
+incomerange,,continue,,,18) What is your average monthly income in USD
+first_driver2,,,drop,,Most important
+second_driver2,,,drop,,Second most important
+third_driver2,,,drop,,Third most important
+fourth_driver2,,,drop,,Fourth most important
+fifth_driver2,,,drop,,Fifth most important
+instability_factor1,,,,,Insufficient access to quality education
+instability_factor2,,,,,Insufficient access to quality health services
+instability_factor3,,,,,Low access to employment
+instability_factor4,,,,,Low level of incomes
+instability_factor5,,,,,Unfair access to justice
+instability_factor6,,,,,High level of conflict
+instability_factor7,,,,,Low performance of traditional governance system
+instability_factor8,,,,,Low performance of formal governance system
+instability_factor9,,,,,Gender inequality
+instability_factor10,,,,,Clan based inequality
+instability_factor11,,,,,Age based inequality
+instability_factor12,,,,,Poor access to water
+instability_factor13,,,,,Conflict FGS-Jubaland
+instability_factor14,,,,,Clan conflict
+instability_factor15,,,,,Conflict As - Gov
+instability_factor16,,,,,Taxation
+instability_factor17,,,,,Corruption
+need1,,,drop,,First most important need
+need2,,,drop,,First most important need
+need3,,,drop,,First most important need
+security,,,,,22) How is the security situation in the area?
+armed_extremism,,,,,23) How has the presence of armed extremism groups changed or not in the area since June 2018?
+social_cohesion,,,,,24) How is the social cohesion in your area?
+decision_making,,,,,25) How is the decision making on community affairs coordinated with local authorities?
+systm1,,,,,Food security
+systm2,,,,,Education
+systm3,,,,,Infrastructures
+systm4,,,,,Health
+systm5,,,,,Security
+systm6,,,,,Justice
+systm7,,,,,Water
+systm8,,,,,Employment
+systm9,,,,,Shelter
+mosttrusted_foodsect,,,drop,,Most trusted governance system Food security
+secondtrusted_foodsect,,,drop,,Second most trusted governance system Food security
+thirdtrusted_foodsect,,,drop,,Third most trusted governance system Food security
+mosttrusted_educt,,,drop,,Most trusted governance system
+secondtrusted_educt,,,drop,,Second most trusted governance system
+thirdtrusted_educt,,,drop,,Third most trusted governance system
+mosttrusted_inft,,,drop,,Most trusted governance system
+secondtrusted_inft,,,drop,,Second most trusted governance system
+thirdtrusted_inft,,,drop,,Third most trusted governance system
+mosttrusted_healtht,,,drop,,Most trusted governance system
+secondtrusted_healtht,,,drop,,Second most trusted governance system
+thirdtrusted_healtht,,,drop,,Third most trusted governance system
+mosttrusted_sect,,,drop,,Most trusted governance system
+secondtrusted_sect,,,drop,,Second most trusted governance system
+thirdtrusted_sect,,,drop,,Third most trusted governance system
+mosttrusted_justt,,,drop,,Most trusted governance system
+secondtrusted_justt,,,drop,,Second most trusted governance system
+thirdtrusted_justt,,,drop,,Third most trusted governance system
+mosttrusted_watt,,,drop,,Most trusted governance system
+secondtrusted_watt,,,drop,,Second most trusted governance system
+thirdtrusted_watt,,,drop,,Third most trusted governance system
+mosttrusted_empt,,,drop,,Most trusted governance system
+secondtrusted_empt,,,drop,,Second most trusted governance system
+thirdtrusted_empt,,,drop,,Third most trusted governance system
+mosttrusted_shelt,,,drop,,Most trusted governance system
+secondtrusted_shelt,,,drop,,Second most trusted governance system
+thirdtrusted_shelt,,,drop,,Third most trusted governance system
+trust1,,,,,FGS
+trust2,,,,,Juba land
+trust3,,,,,Governor
+trust4,,,,,District Commissioner
+trust5,,,,,Clan regulations
+trust6,,,,,Your elders
+trust7,,,,,Your community
+trust8,,,,,Your family
+trust_obstacles1,,,,,Clan favouritism
+trust_obstacles2,,,,,Capacity
+trust_obstacles3,,,,,Corruption
+trust_obstacles4,,,,,Nepotism
+trust_obstacles5,,,,,Government composition
+trust_obstacles6,,,,,Ability to really control the territory (security)
+trust_obstacles7,,,,,Poor  Communication
+trust_obstacles8,,,,,Insufficient  gender inclusion
+trust_obstacles9,,,,,Insufficient   youth inclusion
+trust_obstacles10,,,,,Insufficient  clan minorities inclusion
+engagement,,,,,30) How has your or any household member’s engagement with local community changed or not since June 2018?
+indicator1,,,,,"31) More specifically, how positive or negative is your perception regarding government role in improving access to education"
+expind1,,,text,,31.1) Please explain your answer:
+indicator2,,,,,"32) As a parent, how optimistic are you on your children's legitimate livelihoods opportunities in your area?"
+indicator3,,,,,"33) As a parent, how optimistic are you on your children's legitimate livelihoods opportunities anywhere in Somalia?"
+indicator4,,,,,"34) As a parent, how optimistic are you on your children's legitimate livelihoods opportunities outside of Somalia?"
+gender HHH,,,,,Gender of the head of the household
+female_sch_pourc,,continue,,,Percentage of girls scholarized
+male_sch_pourc,,continue,,,Percentage of boys scholarized
+child_sch_pourc,,continue,,,Percentage of children scholarized
+female_madr_pourc,,continue,,,Percentage of girls scholarized in madrassa
+male_madr_pourc,,continue,,,Percentage of boys scholarized in madrassa
+child_madr_pourc,,continue,,,Percentage of children scholarized in madrassa
+female_form_pourc,,continue,,,Percentage of girls scholarized in formal schools
+male_form_pourc,,continue,,,Percentage of boys scholarized in formal schools
+child_form_pourc,,continue,,,Percentage of children scholarized in formal schools
+max_distance,,continue,,,Maximum distance to school
+max_distance_male,,continue,,,Maximum distance to school for boys
+max_distance_fem,,continue,,,Maximum distance to school for girls
+conflict_driver,,,,,Main drivers of clonflict
+instability_driver,,,,,Main drivers of instability
+need,,,,,Main needs
+foodsect,,,,,Most trusted governance system for Food Security
+educt,,,,,Most trusted governance system for Education
+inft,,,,,Most trusted governance system for Infrastructure
+healtht,,,,,Most trusted governance system for Health
+sect,,,,,Most trusted governance system for Security
+justt,,,,,Most trusted governance system for Justice
+watt,,,,,Most trusted governance system for Water
+empt,,,,,Most trusted governance system for Employment
+shelt,,,,,Most trusted governance system for Shelter
