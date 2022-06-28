@@ -11,7 +11,6 @@ import pickle
 import re
 from collections import Counter
 from PIL import Image
-from joypy import joyplot
 
 x, y = np.ogrid[100:500, :600]
 mask = ((x - 300) / 2) ** 2 + ((y - 300) / 3) ** 2 > 100 ** 2
