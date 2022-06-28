@@ -120,8 +120,7 @@ def main():
 if __name__ == '__main__':
 	
 	hashed_passwords = stauth.Hasher(passwords).generate()
-	authenticator = stauth.Authenticate(names,usernames,hashed_passwords,
-    'some_cookie_name','some_signature_key',cookie_expiry_days=30)
+	authenticator = stauth.Authenticate(names,usernames,hashed_passwords)
 	name, authentication_status, username = authenticator.login('Login','main')
 	
 	if authentication_status:
