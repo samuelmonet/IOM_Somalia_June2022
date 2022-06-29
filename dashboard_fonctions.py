@@ -3,18 +3,47 @@ import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
 import plotly.express as px
-
+import os
 from plotly.subplots import make_subplots
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
 import pickle
 import re
+import base64
 from collections import Counter
 from PIL import Image
 
 x, y = np.ogrid[100:500, :600]
 mask = ((x - 300) / 2) ** 2 + ((y - 300) / 3) ** 2 > 100 ** 2
 mask = 255 * mask.astype(int)
+
+
+@st.cache(allow_output_mutation=True)
+def get_base64_of_bin_file(bin_file):
+    with open(bin_file, 'rb') as f:
+        data = f.read()
+    return base64.b64encode(data).decode()
+
+@st.cache(allow_output_mutation=True)
+def get_img_with_href(local_img_path, target_url):
+    img_format = os.path.splitext(local_img_path)[-1].replace('.', '')
+    bin_str = get_base64_of_bin_file(local_img_path)
+    html_code = f'''
+        <a href="{target_url}" target="_blank" >
+            <img src="data:image/{img_format};base64,{bin_str}" />
+        </a>'''
+    return html_code
+
+@st.cache(allow_output_mutation=True)
+def html_link(text, target_url):
+    html_code = f'''
+        <a href="{target_url}" target="_blank" >
+            {text}
+        </a>'''
+    return html_code
+
+
+# Rajouter un code pour la taille de l'image dans le html
 
 def sankey_graph(datas, L, height=600,width=1600):
 	""" sankey graph de data pour les catégories dans L dans l'ordre et  de hauter et longueur définie éventuellement"""
@@ -60,21 +89,29 @@ def sankey_graph(datas, L, height=600,width=1600):
 	return fig
 
 
-def count2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis=''):
+def count2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=None):
     dataf[ordonnee] = dataf[ordonnee].apply(lambda x: str(x))
-    agg = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
-        0)
-    agg2 = agg.T / agg.T.sum()
-    agg2 = agg2.T * 100
-    agg2 = agg2.astype(int)
-    if abscisse == 'Village_clean':
-        agg = agg.reindex(['Bit Boos', "Old Sana'a", "Enma'a", "Alkatea'a", "Hada'a", 'AlGamea', "Alomall neighborhood",
-                           'Al-Samoud'])
-        agg2 = agg2.reindex(
-            ['Bit Boos', "Old Sana'a", "Enma'a", "Alkatea'a", "Hada'a", 'AlGamea', "Alomall neighborhood",
-             'Al-Samoud'])
-
-    x = agg.index
+    
+    if second is not None:
+        agg = dataf[[abscisse, second, ordonnee]].groupby(by=[abscisse,second, ordonnee]).\
+        aggregate({abscisse: 'count'}).unstack().fillna(0)
+        agg2 = agg.T / agg.T.sum()
+        agg2 = agg2.T * 100
+        agg2 = agg2.astype(int)
+        
+        x = [list(agg.index.get_level_values(0)),
+           list(agg.index.get_level_values(1)),
+           agg.index]
+        
+        
+    else:
+        agg = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
+            0)
+        agg2 = agg.T / agg.T.sum()
+        agg2 = agg2.T * 100
+        agg2 = agg2.astype(int)
+    
+        x = agg.index
 
     if ordonnee.split(' ')[0] in codes['list name'].values:
         # st.write('on est là')
@@ -107,18 +144,32 @@ def count2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis=''):
     return fig
 
 
-def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis=''):
-    agg2 = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
-        0)
-    agg = agg2.T / agg2.T.sum()
-    agg = agg.T.round(2) * 100
-    if abscisse == 'Village_clean':
-        agg = agg.reindex(
-            ['Bit Boos', "Old Sana'a", "Enma'a", "Alkatea'a", "Hada'a", 'AlGamea', "Alomall neighborhood", 'Al-Samoud'])
-        agg2 = agg2.reindex(
-            ['Bit Boos', "Old Sana'a", "Enma'a", "Alkatea'a", "Hada'a", 'AlGamea', "Alomall neighborhood", 'Al-Samoud'])
-    x = agg.index
-    x = agg2.index
+
+def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=None):
+    
+    """ second allows to add a layer on the axis"""
+    
+    if second is not None:
+        agg = dataf[[abscisse, second, ordonnee]].groupby(by=[abscisse,second, ordonnee]).\
+        aggregate({abscisse: 'count'}).unstack().fillna(0)
+        agg2 = agg.T / agg.T.sum()
+        agg2 = agg2.T * 100
+        agg2 = agg2.astype(int)
+        
+        x = [list(agg.index.get_level_values(0)),
+           list(agg.index.get_level_values(1)),
+           agg.index]
+        
+        
+    else:
+        agg = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
+            0)
+        agg2 = agg.T / agg.T.sum()
+        agg2 = agg2.T * 100
+        agg2 = agg2.astype(int)
+    
+        x = agg.index
+    
     if ordonnee.split(' ')[0] in codes['list name'].values:
         colors_code = codes[codes['list name'] == ordonnee.split(' ')[0]].sort_values(['code']).copy()
         labels = colors_code['label'].tolist()
@@ -150,7 +201,7 @@ def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis=''):
                       )
     return fig
 
-def show_data(row,df,codes,categs=None):
+def show_data(row,df,codes,categs=None,second=None):
     st.subheader(row['title'])
     if row['graphtype'] == 'treemap':
         # fig=go.Figure()
@@ -160,6 +211,12 @@ def show_data(row,df,codes,categs=None):
         fig = px.treemap(df, path=[row['variable_x'], row['variable_y']],
                          values='persons', color=row['variable_y'])
         st.plotly_chart(fig, use_container_width=True)
+        if second != None:
+        	fig = px.treemap(df, path=[row['variable_x'],second, row['variable_y']],
+                         values='persons', color=row['variable_y'])
+        	st.plotly_chart(fig, use_container_width=True)
+
+        
 
     elif row['graphtype'] == 'violin':
         fig = go.Figure()
@@ -185,6 +242,7 @@ def show_data(row,df,codes,categs=None):
 	
     elif row['graphtype'] == 'bar':
         # st.write(df[quest.iloc[i]['variable_y']].dtype)
+        st.write(second)
         col1, col2 = st.columns([1, 1])
         fig1 = count2(row['variable_x'], row['variable_y'],
                       df, codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'])
@@ -192,6 +250,14 @@ def show_data(row,df,codes,categs=None):
         fig2 = pourcent2(row['variable_x'], row['variable_y'],
                          df,codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'])
         col2.plotly_chart(fig2, use_container_width=True)
+        if second != None:
+        	fig1 = count2(row['variable_x'], row['variable_y'],
+                      df, codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'],second=second)
+        	col1.plotly_chart(fig1, use_container_width=True)
+        	fig2 = pourcent2(row['variable_x'], row['variable_y'],
+                         df,codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'],second=second)
+        	col2.plotly_chart(fig2, use_container_width=True)
+        
 
     elif row['graphtype'] == 'map':
         fig = px.scatter_mapbox(df, lat="latitude", lon="longitude", color=row['variable_x'],
@@ -226,51 +292,11 @@ def show_data(row,df,codes,categs=None):
             	col1.plotly_chart(fig2,use_container_width=True)
             else:
                 col2.plotly_chart(fig2,use_container_width=True)
-    
-    
-    
-    
+  
     
     st.write(row['Description'])
 
 def select_data(row,data,cat_cols):
-
-    if row['variable_x'] in cat_cols:
-        if row['graphtype'] == 'map':
-            cat = row['variable_x']
-            df = pd.DataFrame(columns=[cat, 'latitude', 'longitude'])
-            catcols = [j for j in data.columns if cat in j]
-            cats = [' '.join(i.split(' ')[1:]) for i in catcols]
-            for n in range(len(catcols)):
-                ds = data[[catcols[n], 'latitude', 'longitude']].copy()
-                ds = ds[ds[catcols[n]].isin(['Yes', 1])]
-                ds[catcols[n]] = ds[catcols[n]].apply(lambda x: cats[n])
-                ds.columns = [cat, 'latitude', 'longitude']
-                df = df.append(ds)
-            df['persons'] = np.ones(len(df))
-            return df
-
-        elif row['variable_y'] in cat_cols:
-            df = pd.DataFrame(columns=[row['variable_x'], row['variable_y']])
-            quests1 = [i for i in data.columns if row['variable_x'] in i]
-            catq1 = [' '.join(i.split(' ')[1:]) for i in quests1]
-
-            # st.write(quests1)
-            quests2 = [i for i in data.columns if row['variable_y'] in i]
-            catq2 = [' '.join(i.split(' ')[1:]) for i in quests2]
-            # st.write(quests2)
-            # st.write(dfm[quests1+quests2])
-            for cat_x in range(len(quests1)):
-                for cat_y in range(len(quests2)):
-                    ds = data[[quests1[cat_x], quests2[cat_y]]].copy()
-                    ds = ds[ds[quests1[cat_x]].isin(['Yes', 1])]
-                    ds = ds[ds[quests2[cat_y]].isin(['Yes', 1])]
-                    ds[quests1[cat_x]] = ds[quests1[cat_x]].apply(lambda x: catq1[cat_x])
-                    ds[quests2[cat_y]] = ds[quests2[cat_y]].apply(lambda x: catq2[cat_y])
-                    ds.columns = [row['variable_x'], row['variable_y']]
-                    df = df.append(ds)
-            df['persons'] = np.ones(len(df))
-            return df
 
     if row['variable_x'] in cat_cols or row['variable_y'] in cat_cols:
         df=data.copy()
@@ -280,15 +306,25 @@ def select_data(row,data,cat_cols):
             cat, autre = row['variable_y'], row['variable_x']
         catcols = [j for j in data.columns if cat in j[:len(cat)]]
         
+        if autre in ['district','subdistrict']:
+        	autre=['district','subdistrict','village','school','clan']
+        else:
+        	autre=[autre]
+        
         df['persons'] = np.ones(len(df))
-        return df[['persons',autre]+catcols]
+        return df[['persons']+autre+catcols]
 
     elif row['graphtype'] == 'map':
         df = data[[row['variable_x'],'latitude','longitude']].copy()
         return df
 
     else:
-        df = data[[row['variable_x'], row['variable_y']]].copy()
+        if row['variable_x'] in ['district','subdistrict']:
+        	df=data[['district','subdistrict','village','school','clan',row['variable_y']]].copy()
+        elif row['variable_y'] in ['district','subdistrict']:
+        	df=data[['district','subdistrict','village','school','clan',row['variable_x']]].copy()
+        else:
+        	df = data[[row['variable_x'], row['variable_y']]].copy()
         df['persons'] = np.ones(len(df))
         return df
 
