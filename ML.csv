@@ -1,47 +1,76 @@
-Code	Sidebar	Question	Coding	Commentaires
-indicator1	Perception regarding government rôle in improving access to education (Positive or Negative)	More specifically, how positive or negative is your perception regarding government role in improving access to education	"If yes, has there been improvement in your basic knowledge on conflict transformation?:    Significantly increased:2, Slightly increased:1, No change or did not receive training:0, Slightly decreased: -1 Significantly Decreased: -2 <tab> Longitude : Red=Malakal Purple = Bentiu Blue = Wau <tab> Yes or no questions :  Yes:1 (Rouge) and No:0 (Blue)
-"	"The main factors that influence on the well being of the respondent is longitude and given that only the highest values of longitude tend to decrease the well beeing it means that people are feeling less well in Malakal compared to the other 2 counties.
-The other main factor is to have received a training inconflict transformation and dialogue skills and to feel that this had a significant improvement in basic knowledges on conflict transformations.
-
+Code	Sidebar	Results	Question	Coding	Commentaires
+indicator1	Perception regarding government rôle in improving access to education (Positive or Negative)	"As we can see on the table all the respondents who had a negative perception regarding the government rôle in improving access to education were identified correctly such as those who responded positively.
+The model has such an accuracy rate of 100 % over a quite significant sample size which means that the results are quite reliable. It is to noted that the model only uses the response to the questions displayed in the above diagram.
+"	More specifically, how positive or negative is your perception regarding government role in improving access to education	"Most trusted government system..., Main needs..., Main driver of conflict... : Red mean the person classified the mentionned response as first, purple he mentionned it in second position, dark blue in third and light blue means he did not mention it  <tab> To your opinion what is the impact… :  Red means key determinant and light blue means No determinant at all and there was there was 3 other possibilities inbetween <tab> Engagement change, Provision of basic services,  : Red means Significantly increased, Light blue means significantly decreased and there was 3 other possibilities inbetween <tab> Level of trust, Decision making on community affairs : Red mean Very good and light blue Very bad and there was 3 other possibilities inbetween <tab> Obstacle to trust the government : Red mean Determinant and lightblue means Not important at all and there was 2 possiilities inbetween <tab> 
+"	"The main factor that contribute to a positive perception regarding the government rôle in improving the access to education seems to be geographic. The more we go towards south and west, the more people seems to perceive it positively. This means that it is quite different from one district to another and even from one village to another as we can see it in the correlations graphics.
+ 
 The other factors which have influence but a lesser impact are:
 
-For contributing to reducing the well beign:
-- The fact to pay for water
-- Having a higher income per family member
+For a positive perception:
+- Holding the UN as one of the most trusted governance system for Food Security (Mainly farmers and breeders as we can see in Correlations)
+- Having a higher income
+- Having its children scholarized
+- Holding the FMS as one of the most trusted governance system for Security
+- Having a good level of trust in the District Commissionner
+- Considering Nepotism as a trust obstacle for the government
+- Having the feeling that the basic services of the government in relation to water has improved
+- Having a good perception of how the decision making on community affairs is coordinated with local authorities
 
-For those contribution to increasing the well being:
-- Having received Counselling from IOM
-- Having received NFI/Shelter and having the feeling that they were distributed in a safe manner (ie this was particularly the case in Bentiu)
-- Having received NFI/Shelter items that respond to the main urgent needs
-- Having received Emergency shelter assistance"
-indicator2	Optimism on children's legitimate livelihoods opportunities in the area?	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities in your area?	"If yes, has there been improvement in your basic knowledge on conflict transformation?       Significantly increased:2, Slightly increased:1, No change or did not receive training:0, Slightly decreased: -1 Significantly Decreased: -2 <tab> Yes or no questions                Yes:1 (Rouge) and No:0 (Blue)
-"	"Here we can see that very few of the aspect that influence the most the impression that the project. improved the access to safe appropriate emergency shelter and lifesaving NFIs has anything to do with NFI distributions.
-The main aspect which are coming out are more GBV related activities (improvement of overall knowledge and participation to Basic Counselling and access to WGFS)
-The other main factor that tend to have had an influence on the perception of the project as having improved the access to appropriate emergency shelter and lifesaving NFIs is not to have received the Shelter/NFI items in a safe manner and to live in Bentiu."
-indicator3	Optimism on children's legitimate livelihoods opportunities in Somalia?	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities anywhere in Somalia?	"If yes, has there been improvement in your basic knowledge on conflict transformation?       Significantly increased:2, Slightly increased:1, No change or did not receive training:0, Slightly decreased: -1 Significantly Decreased: -2 <tab> Yes or no questions                Yes:1 (Rouge) and No:0 (Blue)
-"	"The main factors that influence on the ability of the respondent to better respond to shocks and build on existing skills is the impression to have increased its knowledge in relation to GBV.
+The factors influencing a Negative perception are:
+- Considering Low performance of formal governance system as a trust obstacle for the government
+- Considering that insufficient acces to education, high level of conflict and low level of incomes have an impact on instability in the area
+- Considering Education as one of the main needs
+- Considering Security as a main driver of instability
+- Having many men in the household
+- Considering FMS as  one of the most trusted governance system for Food Security
+- Considering FGS as  one of the most trusted governance system for Education"
+indicator2	Optimism on children's legitimate livelihoods opportunities in the area?	"We can see on the left the differences between prediction and real score mentionned by the respondents.
+The metrics of the models are a R2 of 0.93 and a mean absolute error of 0.22 between the predicted score and the true score. This means that the model is quite reliable to predict the answer of the respondent to this question, based on his responses. On these responses the geographic components (GPS position, district, school, village) were not important and removed from the model.
+On this models however, only the main questions were displayed on the graphic here above as there were over 160 features involved in the prediction."	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities in your area?	Security situation, Level of trust, Social cohesion, Decision making on community affairs : Red mean Very good and light blue Very bad and there was 3 other possibilities inbetween <tab> To your opinion what is the impact… :  Red means key determinant and light blue means No determinant at all and there was there was 3 other possibilities inbetween <tab> Engagement change, Presence of armed extremism groups, Provision of basic services,  : Red means Significantly increased, Light blue means significantly decreased and there was 3 other possibilities inbetween <tab> Most trusted government system... : Red mean the person classified the mentionned response as first, purple he mentionned it in second position, dark blue in third and light blue means he did not mention it  <tab> Obstacle to trust the government : Red mean Determinant and lightblue means Not important at all and there was 2 possiilities inbetween	"Among the main factors influencing optimism for children’s future in the area are :
+- A sentiment of security
+- A good level of trust in Jubaland, DC and Governor
+- Having a good social cohesion in the area
+- Having the impression that engagement with local community has improved
+-  Surprisingly (probably correlated to something else) mentionning an increase in armed extremism groups in the area
+- Holding the Governor as one of the most trusted governance system for Water
+- Considering that the provision of basic services from the Government in relation to Food Securit has improved
 
-The other factor are:
-For contributing to improving the ability to respond to shocks:
-- Having received Basic Councelling
-- Living in Bentiu (Or not living in Wau according to longitude)
-- Having received Shelter/NFI items  and in a safe manner
-- Having received messages through radio talk shows
+Among the main factors influencing pessimism we find :
+-  Considering that insufficient acces to education, high level of conflict and low level of incomes have an impact on instability in the area
+- Considering Nepotism as a trust obstacle for the government
+- Holding the FGS as one of the most trusted governance system for Shelter
+- Considering Insufficient Gender Inclusion as a trust obstacle for the government
+- Considering Clan favoritism as a trust obstacle for the government"
+indicator3	Optimism on children's legitimate livelihoods opportunities in Somalia?	"We can see on the left the differences between prediction and real score mentionned by the respondents.
+The metrics of the models are a R2 of 0.926 and a mean absolute error of 0.26 between the predicted score and the true score. This means that the model is quite reliable to predict the answer of the respondent to this question, based on his responses. On these responses the geographic components (GPS position, district, school, village) were not important and removed from the model.
+On this models however, only the main questions were displayed on the graphic here above as there were over 160 features involved in the prediction."	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities anywhere in Somalia?	Level of trust, Social cohesion, : Red mean Very good and light blue Very bad and there was 3 other possibilities inbetween <tab> Obstacle to trust the government : Red mean Determinant and lightblue means Not important at all and there was 2 possiilities inbetween <tab> To your opinion what is the impact… :  Red means key determinant and light blue means No determinant at all and there was there was 3 other possibilities inbetween <tab> Most trusted government system...: Red mean the person classified the mentionned response as first, purple he mentionned it in second position, dark blue in third and light blue means he did not mention it  <tab> Presence of armed extremism groups, Provision of basic services,  : Red means Significantly increased, Light blue means significantly decreased and there was 3 other possibilities inbetween   	"Among the main factors influencing optimism for children’s future in Somalia are :
+- A good level of trust in Jubaland, the community, FGS and the family
+- Considering that the conflict AS-Government has an impact on instability in the area
+- Having a good social cohesion in the area
+- Mentionning an increase in armed extremism groups in the area
+- Having globaly a high income
+- Be younger
 
+Among the main factors influencing pessimism we find :
+- Considering Clan favoritism as a trust obstacle for the government
+- Holding the FGS as one of the most trusted governance system for Security and Shelter
+- Considering Insufficient Gender Inclusion as a trust obstacle for the government
+- Holding the FMS as one of the most trusted governance system for Security and Shelter
+ "
+indicator4	Optimism on children's legitimate livelihoods opportunitiesoutside of Somalia?	"We can see on the left the differences between prediction and real score mentionned by the respondents.
+The metrics of the models are a R2 of 0.93 and a mean absolute error of 0.27 between the predicted score and the true score. This means that the model is quite reliable to predict the answer of the respondent to this question, based on his responses. On these responses the geographic components (GPS position, district, school, village) were not important and removed from the model.
+On this models however, only the main questions were displayed on the graphic here above as there were over 160 features involved in the prediction."	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities outside of Somalia?	"To your opinion what is the impact… :  Red means key determinant and light blue means No determinant at all and there was there was 3 other possibilities inbetween <tab> Social cohesion, Level of trust  : Red mean Very good and light blue Very bad and there was 3 other possibilities inbetween <tab> Most trusted government system...: Red mean the person classified the mentionned response as first, purple he mentionned it in second position, dark blue in third and light blue means he did not mention it  <tab> Presence of armed extremism groups, Engagement,  : Red means Significantly increased, Light blue means significantly decreased and there was 3 other possibilities inbetween  
+"	"Among the main factors influencing optimism for children’s future in Somalia are :
+- Considering that the conflict FGS-Jubaland and the conflict AS-Government has an impact on instability in the area
+- Having a good social cohesion in the area
+- Mentionning an increase in armed extremism groups in the area
+- Having the impression that engagement with local community has improved
+- A good level of trust in Jubaland and the DC
+- Living close to school
+- Considering Low performance of formal governance system as a trust obstacle for the government
 
-For contribution to reducing the ability to respond to shocks:
-- Having separate latrines for men and women (surprisingly)"
-indicator4	Optimism on children's legitimate livelihoods opportunitiesoutside of Somalia?	As a parent, how optimistic are you on your children's legitimate livelihoods opportunities outside of Somalia?	"If yes, has there been improvement in your basic knowledge on conflict transformation?:    Significantly increased:2, Slightly increased:1, No change or did not receive training:0, Slightly decreased: -1 Significantly Decreased: -2 <tab> Longitude : Red=Malakal Purple = Bentiu Blue = Wau <tab> Yes or no questions :  Yes:1 (Rouge) and No:0 (Blue)
-"	"(For this model the impression on improvement of GBV knowledge through awareness of GBV campaigns was removed as it was redundant with the question)
- 
-The main factor for overall improvement of GBV knowlege is the awareness of GBV awareness campaigns carried out by the project which shows the good result of this activity.
-
-The other factor are:
-For contributing to improving the knwoledge on GBV we have:
-- Having improved basic knowledge on conflict transformation
-- Having accessed to WGFS
-- Having received Shelter/NFI kits in a safe manner
-- Having received training on CCCM and humanitarian responses
-
-For contributing to reducing the knowledge on GBV we have:
-- Living in Malakal (longitude) or in Payam Wau North"
+Among the main factors influencing pessimism we find :
+-  Considering that insufficient acces to education has an impact on instability in the area
+- Holding the FMS as one of the most trusted governance system for Food Security and Shelter
+- Holding the UN as one of the most trusted governance system for Education
+ "

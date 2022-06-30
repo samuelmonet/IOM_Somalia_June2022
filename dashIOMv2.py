@@ -62,7 +62,6 @@ def main():
 
 	# ______________________________________ SHAP __________________________________#
 
-
 	if topic == 'Machine learning results':
 		
 		comments = pd.read_csv('ML.csv', sep='\t', index_col='Code')
@@ -170,8 +169,47 @@ def main():
 	# ______________________________________ WORDCLOUDS __________________________________#
 
 	elif topic == 'Wordclouds':
-		st.title('Not ready')
+		df = data.copy()
+		continues = pickle.load(open("cont_feat.p", "rb"))
+		feature='expind1'
+		parent='indicator1'
+		col_corpus = ' '.join(df[feature].apply(lambda x : '' if x in ['I do not know', 'There is no', 'None']
+		else x).dropna())
+		col_corpus = re.sub('[^A-Za-z ]', ' ', col_corpus)
+		col_corpus = re.sub('\s+', ' ', col_corpus)
+		col_corpus = col_corpus.lower()
+		sw = st.multiselect('Select words you would like to remove from the wordclouds',
+							[i[0] for i in Counter(col_corpus.split(' ')).most_common() if i[0] not in STOPWORDS][:20])
 		
+		col_corpus = ' '.join([i for i in col_corpus.split(' ') if i not in sw])
+		if col_corpus == ' ' or col_corpus == '':
+			col_corpus = 'No_response'
+			
+		wc = WordCloud(background_color="#0E1117", repeat=False, mask=mask)
+		wc.generate(col_corpus)
+		col1, col2, col3 = st.columns([1, 4, 1])
+		col2.image(wc.to_array(), use_column_width=True)
+		
+		col1, col2 = st.columns([1, 1])
+		col1.write('Feeling Positive regarding government role in improving access to education ({} Respondents)'.format(len(df[df[parent]=='Positive'])))
+		col2.write('Feeling Negative regarding government role in improving access to education ({} Respondents)'.format(len(df[df[parent]=='Negative'])))
+		
+		for feeling in ['Positive','Negative']:# J'en suis la....
+		    col_corpus = ' '.join(df[df[parent]==feeling][feature].apply(lambda x : '' if x in ['I do not know', 'There is no', 'None']
+		    else x).dropna())
+		    col_corpus = re.sub('[^A-Za-z ]', ' ', col_corpus)
+		    col_corpus = re.sub('\s+', ' ', col_corpus)
+		    col_corpus = col_corpus.lower()
+		    col_corpus = ' '.join([i for i in col_corpus.split(' ') if i not in sw])
+		    if col_corpus == ' ' or col_corpus == '':
+		        col_corpus = 'No_response'
+		        
+		    wc = WordCloud(background_color="#0E1117", repeat=False, mask=mask)
+		    wc.generate(col_corpus)
+		    if feeling=='Positive':
+		    	col1.image(wc.to_array(), use_column_width=True)
+		    else:
+		    	col2.image(wc.to_array(), use_column_width=True)
 		
 	# ______________________________________ RADARS __________________________________#
 
@@ -211,9 +249,56 @@ def main():
 		
 		else:
 			
-			st.write('Not yet available')
+			col1,col2=st.columns([1,3])
 			
 			
+			col1.write('Enter the groups you want to compare (maximum 4):')
+			group1=col1.multiselect('Groupe 1',['All respondents']+items)
+			group2=col1.multiselect('Groupe 2',[i for i in ['All respondents']+items if i not in group1])
+			group3=col1.multiselect('Groupe 3',[i for i in ['All respondents']+items if i not in group1+group2])
+			group4=col1.multiselect('Groupe 4',[i for i in ['All respondents']+items if i not in group1+group2+group3])
+			
+			categories = [' '.join((i.split(' ')[1:])) for i in data if subject in i[:len(subject)]]
+            		
+			radar=go.Figure()
+			r_all=data[[i for i in data if subject in i[:len(subject)]]].mean()
+			maxi=r_all.max()
+			if len(group1)>0:
+				if 'All respondents' in group1:
+					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
+				else:
+					r_1=data[data[category].isin(group1)][[i for i in data if subject in i[:len(subject)]]].mean()
+					radar.add_trace(go.Scatterpolar(r=r_1, theta=categories, fill='toself', name=' <br>'.join(group1)))
+					maxi=max(maxi,r_1.max())
+			if len(group2)>0:
+				if 'All respondents' in group2:
+					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
+				else:
+					r_2=data[data[category].isin(group2)][[i for i in data if subject in i[:len(subject)]]].mean()
+					radar.add_trace(go.Scatterpolar(r=r_2, theta=categories, fill='toself', name=' <br>'.join(group2)))
+					maxi=max(maxi,r_2.max())
+			if len(group3)>0:
+				if 'All respondents' in group3:
+					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
+				else:
+					r_3=data[data[category].isin(group3)][[i for i in data if subject in i[:len(subject)]]].mean()
+					radar.add_trace(go.Scatterpolar(r=r_3, theta=categories, fill='toself', name=' <br>'.join(group3)))
+					maxi=max(maxi,r_3.max())
+			if len(group4)>0:
+				if 'All respondents' in group4:
+					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
+				else:
+					r_4=data[data[category].isin(group4)][[i for i in data if subject in i[:len(subject)]]].mean()
+					radar.add_trace(go.Scatterpolar(r=r_4, theta=categories, fill='toself', name=' <br>'.join(group4)))
+					maxi=max(maxi,r_4.max())
+			
+			
+			radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0, maxi])),showlegend=True)
+			radar.update_layout(margin={"r": 20, "t": 20, "l": 20, "b": 20})
+			
+			
+			
+			col2.plotly_chart(radar,use_container_width=True)
 	
 		
 		

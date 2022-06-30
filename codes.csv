@@ -338,43 +338,48 @@ engagement,2,Slightly decreased,2,orange
 engagement,3,No change,3,yellow
 engagement,4,Slightly increased,4,lightgreen
 engagement,5,Significantly increased,5,green
-trust_obstacles1,1,Not important at all,1,red
-trust_obstacles1,2,Somehow important,2,yellow
-trust_obstacles1,3,Very important,3,lightgreen
-trust_obstacles1,4,Determinant,4,green
-trust_obstacles2,1,Not important at all,1,red
-trust_obstacles2,2,Somehow important,2,yellow
-trust_obstacles2,3,Very important,3,lightgreen
-trust_obstacles2,4,Determinant,4,green
-trust_obstacles3,1,Not important at all,1,red
-trust_obstacles3,2,Somehow important,2,yellow
-trust_obstacles3,3,Very important,3,lightgreen
-trust_obstacles3,4,Determinant,4,green
-trust_obstacles4,1,Not important at all,1,red
-trust_obstacles4,2,Somehow important,2,yellow
-trust_obstacles4,3,Very important,3,lightgreen
-trust_obstacles4,4,Determinant,4,green
-trust_obstacles5,1,Not important at all,1,red
-trust_obstacles5,2,Somehow important,2,yellow
-trust_obstacles5,3,Very important,3,lightgreen
-trust_obstacles5,4,Determinant,4,green
-trust_obstacles6,1,Not important at all,1,red
-trust_obstacles6,2,Somehow important,2,yellow
-trust_obstacles6,3,Very important,3,lightgreen
-trust_obstacles6,4,Determinant,4,green
-trust_obstacles7,1,Not important at all,1,red
-trust_obstacles7,2,Somehow important,2,yellow
-trust_obstacles7,3,Very important,3,lightgreen
-trust_obstacles7,4,Determinant,4,green
-trust_obstacles8,1,Not important at all,1,red
-trust_obstacles8,2,Somehow important,2,yellow
-trust_obstacles8,3,Very important,3,lightgreen
-trust_obstacles8,4,Determinant,4,green
-trust_obstacles9,1,Not important at all,1,red
-trust_obstacles9,2,Somehow important,2,yellow
-trust_obstacles9,3,Very important,3,lightgreen
-trust_obstacles9,4,Determinant,4,green
-trust_obstacles10,1,Not important at all,1,red
-trust_obstacles10,2,Somehow important,2,yellow
-trust_obstacles10,3,Very important,3,lightgreen
-trust_obstacles10,4,Determinant,4,green
+trust_obstacles1,1,Not important at all,1,green
+trust_obstacles1,2,Somehow important,2,lightgreen
+trust_obstacles1,3,Very important,3,yellow
+trust_obstacles1,4,Determinant,4,red
+trust_obstacles2,1,Not important at all,1,green
+trust_obstacles2,2,Somehow important,2,lightgreen
+trust_obstacles2,3,Very important,3,yellow
+trust_obstacles2,4,Determinant,4,red
+trust_obstacles3,1,Not important at all,1,green
+trust_obstacles3,2,Somehow important,2,lightgreen
+trust_obstacles3,3,Very important,3,yellow
+trust_obstacles3,4,Determinant,4,red
+trust_obstacles4,1,Not important at all,1,green
+trust_obstacles4,2,Somehow important,2,lightgreen
+trust_obstacles4,3,Very important,3,yellow
+trust_obstacles4,4,Determinant,4,red
+trust_obstacles5,1,Not important at all,1,green
+trust_obstacles5,2,Somehow important,2,lightgreen
+trust_obstacles5,3,Very important,3,yellow
+trust_obstacles5,4,Determinant,4,red
+trust_obstacles6,1,Not important at all,1,green
+trust_obstacles6,2,Somehow important,2,lightgreen
+trust_obstacles6,3,Very important,3,yellow
+trust_obstacles6,4,Determinant,4,red
+trust_obstacles7,1,Not important at all,1,green
+trust_obstacles7,2,Somehow important,2,lightgreen
+trust_obstacles7,3,Very important,3,yellow
+trust_obstacles7,4,Determinant,4,red
+trust_obstacles8,1,Not important at all,1,green
+trust_obstacles8,2,Somehow important,2,lightgreen
+trust_obstacles8,3,Very important,3,yellow
+trust_obstacles8,4,Determinant,4,red
+trust_obstacles9,1,Not important at all,1,green
+trust_obstacles9,2,Somehow important,2,lightgreen
+trust_obstacles9,3,Very important,3,yellow
+trust_obstacles9,4,Determinant,4,red
+trust_obstacles10,1,Not important at all,1,green
+trust_obstacles10,2,Somehow important,2,lightgreen
+trust_obstacles10,3,Very important,3,yellow
+trust_obstacles10,4,Determinant,4,red
+indicator4,1,Not optimistic at all,1,red
+indicator4,2,2,2,orange
+indicator4,3,3,3,yellow
+indicator4,4,4,4,lightgreen
+indicator4,5,Very Optimistic,5,green

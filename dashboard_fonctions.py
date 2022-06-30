@@ -144,31 +144,61 @@ def count2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=Non
     return fig
 
 
+def viol_school(level,school,data):
+    
+    fig = make_subplots(rows=3, cols=1,
+                    shared_xaxes=True,
+                    vertical_spacing=0.02)
+    
+    categs=list(data[level].unique())
+    k=0
+    for categ in categs:
+        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+                                    y=data['child_{}_pourc'.format(school)][data[level] == str(categ)],
+                                    name='All',spanmode='hard',
+                                    box_visible=True,showlegend=True if k==0 else False,
+                                    meanline_visible=True, line_color="black",fillcolor='lightgreen'),row=1,col=1)
+        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+                                    y=data['male_{}_pourc'.format(school)][data[level] == str(categ)],
+                                    name='Boys',spanmode='hard',
+                                    box_visible=True,showlegend=True if k==0 else False,
+                                    meanline_visible=True, line_color="black",fillcolor='blue'),row=2,col=1)
+        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+                                    y=data['female_{}_pourc'.format(school)][data[level] == str(categ)],
+                                    name='Grils',spanmode='hard',
+                                    box_visible=True,showlegend=True if k==0 else False,
+                                    meanline_visible=True, line_color="black",fillcolor="pink"),row=3,col=1)
+        k+=1
+
+    fig.update_layout(showlegend=True,height=800)
+    
+    return fig
+
 
 def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=None):
     
     """ second allows to add a layer on the axis"""
     
     if second is not None:
-        agg = dataf[[abscisse, second, ordonnee]].groupby(by=[abscisse,second, ordonnee]).\
+        agg2 = dataf[[abscisse, second, ordonnee]].groupby(by=[abscisse,second, ordonnee]).\
         aggregate({abscisse: 'count'}).unstack().fillna(0)
-        agg2 = agg.T / agg.T.sum()
-        agg2 = agg2.T * 100
-        agg2 = agg2.astype(int)
+        agg = agg2.T / agg2.T.sum()
+        agg = agg.T * 100
+        agg = agg.round(1)
         
-        x = [list(agg.index.get_level_values(0)),
-           list(agg.index.get_level_values(1)),
+        x = [list(agg2.index.get_level_values(0)),
+           list(agg2.index.get_level_values(1)),
            agg.index]
         
         
     else:
-        agg = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
+        agg2 = dataf[[abscisse, ordonnee]].groupby(by=[abscisse, ordonnee]).aggregate({abscisse: 'count'}).unstack().fillna(
             0)
-        agg2 = agg.T / agg.T.sum()
-        agg2 = agg2.T * 100
-        agg2 = agg2.astype(int)
+        agg = agg2.T / agg2.T.sum()
+        agg = agg.T * 100
+        agg = agg.round(1)
     
-        x = agg.index
+        x = agg2.index
     
     if ordonnee.split(' ')[0] in codes['list name'].values:
         colors_code = codes[codes['list name'] == ordonnee.split(' ')[0]].sort_values(['code']).copy()
@@ -201,7 +231,7 @@ def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=
                       )
     return fig
 
-def show_data(row,df,codes,categs=None,second=None):
+def show_data(k,sub_topic,row,df,codes,categs=None):
     st.subheader(row['title'])
     if row['graphtype'] == 'treemap':
         # fig=go.Figure()
@@ -211,11 +241,18 @@ def show_data(row,df,codes,categs=None,second=None):
         fig = px.treemap(df, path=[row['variable_x'], row['variable_y']],
                          values='persons', color=row['variable_y'])
         st.plotly_chart(fig, use_container_width=True)
+        if sub_topic=='Districts':
+	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
+        else:
+	        second=None
         if second != None:
         	fig = px.treemap(df, path=[row['variable_x'],second, row['variable_y']],
                          values='persons', color=row['variable_y'])
         	st.plotly_chart(fig, use_container_width=True)
 
+    elif row['graphtype']=='school':
+    	fig=viol_school(row['variable_x'],row['variable_y'][1:],df)
+    	st.plotly_chart(fig, use_container_width=True)
         
 
     elif row['graphtype'] == 'violin':
@@ -241,8 +278,7 @@ def show_data(row,df,codes,categs=None,second=None):
         st.plotly_chart(fig, use_container_width=True)
 	
     elif row['graphtype'] == 'bar':
-        # st.write(df[quest.iloc[i]['variable_y']].dtype)
-        st.write(second)
+        
         col1, col2 = st.columns([1, 1])
         fig1 = count2(row['variable_x'], row['variable_y'],
                       df, codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'])
@@ -250,6 +286,10 @@ def show_data(row,df,codes,categs=None,second=None):
         fig2 = pourcent2(row['variable_x'], row['variable_y'],
                          df,codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'])
         col2.plotly_chart(fig2, use_container_width=True)
+        if sub_topic=='Districts':
+	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
+        else:
+	        second=None
         if second != None:
         	fig1 = count2(row['variable_x'], row['variable_y'],
                       df, codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'],second=second)
@@ -284,10 +324,9 @@ def show_data(row,df,codes,categs=None,second=None):
             
             fig2.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0, max(r_all.max(),r_categ.max())])),showlegend=True)
 
-            
-            
-            
-            
+            fig2.update_layout(title='{} : {} respondents'.format(items[i],len(df[df[row['variable_y']]==items[i]]))\
+            ,margin={"r": 20, "t": 50, "l": 40, "b": 20})
+             
             if i%2==0:
             	col1.plotly_chart(fig2,use_container_width=True)
             else:
@@ -297,7 +336,10 @@ def show_data(row,df,codes,categs=None,second=None):
     st.write(row['Description'])
 
 def select_data(row,data,cat_cols):
-
+    
+    if row['variable_y'][0]=='_':
+    	return data[[row['variable_x']]+[i for i in data if row['variable_y'] in i]]
+    
     if row['variable_x'] in cat_cols or row['variable_y'] in cat_cols:
         df=data.copy()
         if row['variable_x'] in cat_cols:
