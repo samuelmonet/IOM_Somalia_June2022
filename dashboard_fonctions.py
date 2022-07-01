@@ -144,8 +144,7 @@ def count2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=Non
     return fig
 
 
-def viol_school(level,school,data):
-    
+def viol_school(level,school,data,second=None):
     fig = make_subplots(rows=3, cols=1,
                     shared_xaxes=True,
                     vertical_spacing=0.02)
@@ -153,17 +152,22 @@ def viol_school(level,school,data):
     categs=list(data[level].unique())
     k=0
     for categ in categs:
-        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+        x_base=data[data[level] == str(categ)]
+        if second is not None:
+            x=[list(x_base[level]),x_base[second],x_base.index]
+        else:
+            x=x_base[level]
+        fig.add_trace(go.Violin(x=x,
                                     y=data['child_{}_pourc'.format(school)][data[level] == str(categ)],
                                     name='All',spanmode='hard',
                                     box_visible=True,showlegend=True if k==0 else False,
                                     meanline_visible=True, line_color="black",fillcolor='lightgreen'),row=1,col=1)
-        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+        fig.add_trace(go.Violin(x=x,
                                     y=data['male_{}_pourc'.format(school)][data[level] == str(categ)],
                                     name='Boys',spanmode='hard',
                                     box_visible=True,showlegend=True if k==0 else False,
                                     meanline_visible=True, line_color="black",fillcolor='blue'),row=2,col=1)
-        fig.add_trace(go.Violin(x=data[level][data[level] == str(categ)],
+        fig.add_trace(go.Violin(x=x,
                                     y=data['female_{}_pourc'.format(school)][data[level] == str(categ)],
                                     name='Grils',spanmode='hard',
                                     box_visible=True,showlegend=True if k==0 else False,
@@ -241,7 +245,7 @@ def show_data(k,sub_topic,row,df,codes,categs=None):
         fig = px.treemap(df, path=[row['variable_x'], row['variable_y']],
                          values='persons', color=row['variable_y'])
         st.plotly_chart(fig, use_container_width=True)
-        if sub_topic=='Districts':
+        if sub_topic in ['Districts']:
 	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
         else:
 	        second=None
@@ -253,9 +257,17 @@ def show_data(k,sub_topic,row,df,codes,categs=None):
     elif row['graphtype']=='school':
     	fig=viol_school(row['variable_x'],row['variable_y'][1:],df)
     	st.plotly_chart(fig, use_container_width=True)
+    	if sub_topic in ['Districts','Subdistrict']:
+	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
+    	else:
+	        second=None
+    	if second != None:
+        	fig2 = viol_school(row['variable_x'],row['variable_y'][1:],df,second=second)
+        	st.plotly_chart(fig2, use_container_width=True)
         
 
     elif row['graphtype'] == 'violin':
+        #st.write(df)
         fig = go.Figure()
         if categs == None:
             if row['variable_x'].split(' ')[0] in codes['list name'].unique():
@@ -276,6 +288,31 @@ def show_data(k,sub_topic,row,df,codes,categs=None):
         fig.update_layout(yaxis={'title': row['ytitle'], 'title_font': {'size': 18}})
 
         st.plotly_chart(fig, use_container_width=True)
+        
+        if sub_topic in ['Districts','Subdistrict']:
+	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
+        else:
+	        second=None
+
+        if second != None:
+        	fig2 = go.Figure()
+        	
+        	for categ in df[second].unique():
+        	    temp=df[df[second] == str(categ)].copy()
+        	    x=[list(temp[row['variable_x']]),list(temp[second]),temp.index]	    
+	            fig2.add_trace(go.Violin(x=x,
+                                    y=df[row['variable_y']][df[second] == str(categ)],
+                                    name=categ,
+                                    box_visible=True,
+                                    meanline_visible=True, points="all", ))
+	        fig2.update_layout(showlegend=False)
+        	fig2.update_yaxes(range=[-0.1, df[row['variable_y']].max() + 1])
+        	fig2.update_layout(yaxis={'title': row['ytitle'], 'title_font': {'size': 18}})
+
+        	st.plotly_chart(fig2, use_container_width=True)
+        	
+        
+        
 	
     elif row['graphtype'] == 'bar':
         
@@ -286,7 +323,7 @@ def show_data(k,sub_topic,row,df,codes,categs=None):
         fig2 = pourcent2(row['variable_x'], row['variable_y'],
                          df,codes, legendtitle=row['legendtitle'], xaxis=row['xtitle'])
         col2.plotly_chart(fig2, use_container_width=True)
-        if sub_topic=='Districts':
+        if sub_topic in ['Districts','Subdistrict']:
 	        second=st.selectbox(str(k)+'/ Look at a lower level:',[None,'village','school','clan','subdistrict'])
         else:
 	        second=None
@@ -326,21 +363,27 @@ def show_data(k,sub_topic,row,df,codes,categs=None):
 
             fig2.update_layout(title='{} : {} respondents'.format(items[i],len(df[df[row['variable_y']]==items[i]]))\
             ,margin={"r": 20, "t": 50, "l": 40, "b": 20})
-             
+            
+            fig2.update_layout(legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="center", x=0.5,\
+            			 font=dict(size=16), title=dict(font=dict(size=16),side='top'))) 
             if i%2==0:
             	col1.plotly_chart(fig2,use_container_width=True)
             else:
                 col2.plotly_chart(fig2,use_container_width=True)
   
-    
+    	
     st.write(row['Description'])
 
 def select_data(row,data,cat_cols):
     
     if row['variable_y'][0]=='_':
-    	return data[[row['variable_x']]+[i for i in data if row['variable_y'] in i]]
+    	if row['variable_x'] in ['district','subdistrict']:
+        	return data[['district','subdistrict','village','school','clan']+\
+        	[i for i in data if row['variable_y'] in i]].copy()
+    	else:
+        	return data[[row['variable_x']]+[i for i in data if row['variable_y'] in i]]
     
-    if row['variable_x'] in cat_cols or row['variable_y'] in cat_cols:
+    elif row['variable_x'] in cat_cols or row['variable_y'] in cat_cols:
         df=data.copy()
         if row['variable_x'] in cat_cols:
             cat, autre = row['variable_x'], row['variable_y']

@@ -93,23 +93,23 @@ second_driver2,,,drop,,Second most important
 third_driver2,,,drop,,Third most important
 fourth_driver2,,,drop,,Fourth most important
 fifth_driver2,,,drop,,Fifth most important
-instability_factor1,,,,,Insufficient access to quality education
-instability_factor2,,,,,Insufficient access to quality health services
-instability_factor3,,,,,Low access to employment
-instability_factor4,,,,,Low level of incomes
-instability_factor5,,,,,Unfair access to justice
-instability_factor6,,,,,High level of conflict
-instability_factor7,,,,,Low performance of traditional governance system
-instability_factor8,,,,,Low performance of formal governance system
-instability_factor9,,,,,Gender inequality
-instability_factor10,,,,,Clan based inequality
-instability_factor11,,,,,Age based inequality
-instability_factor12,,,,,Poor access to water
-instability_factor13,,,,,Conflict FGS-Jubaland
-instability_factor14,,,,,Clan conflict
-instability_factor15,,,,,Conflict As - Gov
-instability_factor16,,,,,Taxation
-instability_factor17,,,,,Corruption
+instability_factor1,,,,,Impact of Insufficient access to quality education on instability in your area ?
+instability_factor2,,,,,Impact of Insufficient access to quality health services on instability in your area ?
+instability_factor3,,,,,Impact of Low access to employment on instability in your area ?
+instability_factor4,,,,,Impact of Low level of incomes on instability in your area ?
+instability_factor5,,,,,Impact of Unfair access to justice on instability in your area ?
+instability_factor6,,,,,Impact of High level of conflict on instability in your area ?
+instability_factor7,,,,,Impact of Low performance of traditional governance system on instability in your area ?
+instability_factor8,,,,,Impact of Low performance of formal governance system on instability in your area ?
+instability_factor9,,,,,Impact of Gender inequality on instability in your area ?
+instability_factor10,,,,,Impact of Clan based inequality on instability in your area ?
+instability_factor11,,,,,Impact of Age based inequality on instability in your area ?
+instability_factor12,,,,,Impact of Poor access to water on instability in your area ?
+instability_factor13,,,,,Impact of Conflict FGS-Jubaland on instability in your area ?
+instability_factor14,,,,,Impact of Clan conflict on instability in your area ?
+instability_factor15,,,,,Impact of Conflict As – Gov on instability in your area ?
+instability_factor16,,,,,Impact of Taxation on instability in your area ?
+instability_factor17,,,,,Impact of Corruption on instability in your area ?
 need1,,,drop,,First most important need
 need2,,,drop,,First most important need
 need3,,,drop,,First most important need
@@ -117,15 +117,15 @@ security,,,,,22) How is the security situation in the area?
 armed_extremism,,,,,23) How has the presence of armed extremism groups changed or not in the area since June 2018?
 social_cohesion,,,,,24) How is the social cohesion in your area?
 decision_making,,,,,25) How is the decision making on community affairs coordinated with local authorities?
-systm1,,,,,Food security
-systm2,,,,,Education
-systm3,,,,,Infrastructures
-systm4,,,,,Health
-systm5,,,,,Security
-systm6,,,,,Justice
-systm7,,,,,Water
-systm8,,,,,Employment
-systm9,,,,,Shelter
+systm1,,,,,How has the provision of basic services by the government changed? Food security
+systm2,,,,,How has the provision of basic services by the government changed? Education
+systm3,,,,,How has the provision of basic services by the government changed? Infrastructures
+systm4,,,,,How has the provision of basic services by the government changed? Health
+systm5,,,,,How has the provision of basic services by the government changed? Security
+systm6,,,,,How has the provision of basic services by the government changed? Justice
+systm7,,,,,How has the provision of basic services by the government changed? Water
+systm8,,,,,How has the provision of basic services by the government changed? Employment
+systm9,,,,,How has the provision of basic services by the government changed? Shelter
 mosttrusted_foodsect,,,drop,,Most trusted governance system Food security
 secondtrusted_foodsect,,,drop,,Second most trusted governance system Food security
 thirdtrusted_foodsect,,,drop,,Third most trusted governance system Food security
@@ -153,24 +153,24 @@ thirdtrusted_empt,,,drop,,Third most trusted governance system
 mosttrusted_shelt,,,drop,,Most trusted governance system
 secondtrusted_shelt,,,drop,,Second most trusted governance system
 thirdtrusted_shelt,,,drop,,Third most trusted governance system
-trust1,,,,,FGS
-trust2,,,,,Juba land
-trust3,,,,,Governor
-trust4,,,,,District Commissioner
-trust5,,,,,Clan regulations
-trust6,,,,,Your elders
-trust7,,,,,Your community
-trust8,,,,,Your family
-trust_obstacles1,,,,,Clan favouritism
-trust_obstacles2,,,,,Capacity
-trust_obstacles3,,,,,Corruption
-trust_obstacles4,,,,,Nepotism
-trust_obstacles5,,,,,Government composition
-trust_obstacles6,,,,,Ability to really control the territory (security)
-trust_obstacles7,,,,,Poor  Communication
-trust_obstacles8,,,,,Insufficient  gender inclusion
-trust_obstacles9,,,,,Insufficient   youth inclusion
-trust_obstacles10,,,,,Insufficient  clan minorities inclusion
+trust1,,,,,Estimate how you estimate your level of trust in FGS
+trust2,,,,,Estimate how you estimate your level of trust in Juba land
+trust3,,,,,Estimate how you estimate your level of trust in Governor
+trust4,,,,,Estimate how you estimate your level of trust in District Commissioner
+trust5,,,,,Estimate how you estimate your level of trust in Clan regulations
+trust6,,,,,Estimate how you estimate your level of trust in Your elders
+trust7,,,,,Estimate how you estimate your level of trust in Your community
+trust8,,,,,Estimate how you estimate your level of trust in Your family
+trust_obstacles1,,,,,How important is Clan favouritism as obstacle for you to trust your government
+trust_obstacles2,,,,,How important is Capacity as obstacle for you to trust your government
+trust_obstacles3,,,,,How important is Corruption as obstacle for you to trust your government
+trust_obstacles4,,,,,How important is Nepotism as obstacle for you to trust your government
+trust_obstacles5,,,,,How important is Government composition as obstacle for you to trust your government
+trust_obstacles6,,,,,How important is Ability to really control the territory (security) as obstacle for you to trust your government
+trust_obstacles7,,,,,How important is Poor  Communication as obstacle for you to trust your government
+trust_obstacles8,,,,,How important is Insufficient  gender inclusion as obstacle for you to trust your government
+trust_obstacles9,,,,,How important is Insufficient   youth inclusion as obstacle for you to trust your government
+trust_obstacles10,,,,,How important is Insufficient  clan minorities inclusion as obstacle for you to trust your government
 engagement,,,,,30) How has your or any household member’s engagement with local community changed or not since June 2018?
 indicator1,,,,,"31) More specifically, how positive or negative is your perception regarding government role in improving access to education"
 expind1,,,text,,31.1) Please explain your answer:

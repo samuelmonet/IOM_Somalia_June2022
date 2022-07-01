@@ -13,7 +13,7 @@ from PIL import Image
 from streamlit_option_menu import option_menu
 from dashboard_fonctions import *
 
-st.set_page_config(layout="wide")
+st.set_page_config(page_title='IOM Somalia June 2022',layout="wide")
 
 
 @st.cache
@@ -22,7 +22,7 @@ def load_data():
 	data = pd.read_csv('viz.csv', sep='\t')
 	data.drop([i for i in data if 'Unnamed' in i], axis=1, inplace=True)
 	correl = pd.read_excel('graphs.xlsx',index_col=0)
-	questions = pd.read_csv('questions.csv')
+	questions = pd.read_csv('questions.csv',index_col=0)
 	questions.drop([i for i in questions if 'Unnamed' in i],axis=1,inplace=True)
 	questions.columns=['parent', 'type', 'Treatment', 'Other','question']
 	codes = pd.read_csv('codes.csv', index_col=None).dropna(how='any', subset=['color'])
@@ -74,7 +74,7 @@ def main():
 		
 		commentaires = comments.loc[selection]
 
-		title1.title('Machine learning results on predictive model trained on question:')
+		title1.title('Machine learning results on predictive model trained on question: (select one below)')
 
 		st.title(comments.loc[selection]['Question'])
 		st.title('')
@@ -131,7 +131,8 @@ def main():
 		
 		sub_topic = st.sidebar.radio('Select the topic you want to look at:',correl['categories'].unique())
 
-		title1.title('Main correlations uncovered from the database related to '+sub_topic)
+		title1.title('Main correlations uncovered from the database related to {}{}'\
+		.format(sub_topic,' (select a sub categorie on the sidebar)' if sub_topic == 'Districts' else ''))
 
 		title1.write('Note: Correlation does not mean causation. This is not because 2 features are correlated that one is '
 					 'the cause of the other. So conclusion have to be made with care.')
@@ -169,6 +170,8 @@ def main():
 	# ______________________________________ WORDCLOUDS __________________________________#
 
 	elif topic == 'Wordclouds':
+		title1.title('Wordcloud for question:')
+		title1.title('How positive or negative is your perception regarding government role in improving access to education? Explain')
 		df = data.copy()
 		continues = pickle.load(open("cont_feat.p", "rb"))
 		feature='expind1'
@@ -178,7 +181,8 @@ def main():
 		col_corpus = re.sub('[^A-Za-z ]', ' ', col_corpus)
 		col_corpus = re.sub('\s+', ' ', col_corpus)
 		col_corpus = col_corpus.lower()
-		sw = st.multiselect('Select words you would like to remove from the wordclouds',
+		col1, col2, col3 = st.columns([1, 3, 2])
+		sw = col3.multiselect('Select words you would like to remove from the wordclouds',
 							[i[0] for i in Counter(col_corpus.split(' ')).most_common() if i[0] not in STOPWORDS][:20])
 		
 		col_corpus = ' '.join([i for i in col_corpus.split(' ') if i not in sw])
@@ -187,12 +191,15 @@ def main():
 			
 		wc = WordCloud(background_color="#0E1117", repeat=False, mask=mask)
 		wc.generate(col_corpus)
-		col1, col2, col3 = st.columns([1, 4, 1])
+		
 		col2.image(wc.to_array(), use_column_width=True)
 		
-		col1, col2 = st.columns([1, 1])
-		col1.write('Feeling Positive regarding government role in improving access to education ({} Respondents)'.format(len(df[df[parent]=='Positive'])))
-		col2.write('Feeling Negative regarding government role in improving access to education ({} Respondents)'.format(len(df[df[parent]=='Negative'])))
+		border1,col1,border2, col2,border3 = st.columns([1,4,1,4,1])
+		
+		col1.subheader('Feeling Positive regarding government role in improving \
+				access to education ({}	Respondents)'.format(len(df[df[parent]=='Positive'])))
+		col2.subheader('Feeling Negative regarding government role in improving \
+				access to education ({} Respondents)'.format(len(df[df[parent]=='Negative'])))
 		
 		for feeling in ['Positive','Negative']:# J'en suis la....
 		    col_corpus = ' '.join(df[df[parent]==feeling][feature].apply(lambda x : '' if x in ['I do not know', 'There is no', 'None']
@@ -214,16 +221,26 @@ def main():
 	# ______________________________________ RADARS __________________________________#
 
 	else:
+		#st.write(questions)
+		
 		title1.title('Design your own radar plots')
 		
 		col1,col2= st.columns([1,1])
 			
 		
 		cat_cols = pickle.load( open( "cat_cols.p", "rb" ) )
-		subject=col1.selectbox('Select one of the topics ',cat_cols)
+		subject=questions[questions['question']==col1.selectbox('Select one of the topics ',[questions.loc[i]['question'] for i in cat_cols])].index[0]
 		
-		category=col2.selectbox('Select a category',[i for i in data if data[i].dtype=='object' and len(data[i].unique())<20])
+		questions_codes=[i for i in data if data[i].dtype=='object' and len(data[i].unique())<20]
+		category=questions[questions['question']==col2.selectbox('Select a question',[questions.loc[i]['question'] for i in questions_codes])].index[0]
+		
+		
+		
 		items=data[category].unique().tolist()
+		
+		st.markdown("---")
+		
+		col1,col2= st.columns([1,1])
 		
 		if st.sidebar.radio('Select what you want to do:',['See all options','Compare specific groups'])=='See all options':
 			
@@ -241,7 +258,12 @@ def main():
 				fig2.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All dataset'))
             
 				fig2.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0, max(r_all.max(),r_categ.max())])),showlegend=True)
-
+				
+				fig2.update_layout(title='{} : {} respondents'.format(items[i],len(data[data[category]==items[i]]))\
+            				,margin={"r": 20, "t": 50, "l": 40, "b": 20})
+            
+				fig2.update_layout(legend=dict(orientation="v", yanchor="bottom", y=0.9, xanchor="center", x=0,\
+            			 	font=dict(size=16), title=dict(font=dict(size=16),side='top'))) 
 				if i%2==0:
 					col1.plotly_chart(fig2,use_container_width=True)
 				else:
@@ -268,34 +290,37 @@ def main():
 					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
 				else:
 					r_1=data[data[category].isin(group1)][[i for i in data if subject in i[:len(subject)]]].mean()
-					radar.add_trace(go.Scatterpolar(r=r_1, theta=categories, fill='toself', name=' <br>'.join(group1)))
+					radar.add_trace(go.Scatterpolar(r=r_1, theta=categories, fill='toself', name='{} <br>({}Respondents)'.\
+					format(' <br>'.join(group1),len(data[data[category].isin(group1)]))))
 					maxi=max(maxi,r_1.max())
 			if len(group2)>0:
 				if 'All respondents' in group2:
 					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
 				else:
 					r_2=data[data[category].isin(group2)][[i for i in data if subject in i[:len(subject)]]].mean()
-					radar.add_trace(go.Scatterpolar(r=r_2, theta=categories, fill='toself', name=' <br>'.join(group2)))
+					radar.add_trace(go.Scatterpolar(r=r_2, theta=categories, fill='toself', name='{} <br>({}Respondents)'.\
+					format(' <br>'.join(group2),len(data[data[category].isin(group2)]))))
 					maxi=max(maxi,r_2.max())
 			if len(group3)>0:
 				if 'All respondents' in group3:
 					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
 				else:
 					r_3=data[data[category].isin(group3)][[i for i in data if subject in i[:len(subject)]]].mean()
-					radar.add_trace(go.Scatterpolar(r=r_3, theta=categories, fill='toself', name=' <br>'.join(group3)))
+					radar.add_trace(go.Scatterpolar(r=r_3, theta=categories, fill='toself', name='{} <br>({}Respondents)'.\
+					format(' <br>'.join(group3),len(data[data[category].isin(group3)]))))
 					maxi=max(maxi,r_3.max())
 			if len(group4)>0:
 				if 'All respondents' in group4:
 					radar.add_trace(go.Scatterpolar(r=r_all, theta=categories, fill='toself', name='All respondents'))
 				else:
 					r_4=data[data[category].isin(group4)][[i for i in data if subject in i[:len(subject)]]].mean()
-					radar.add_trace(go.Scatterpolar(r=r_4, theta=categories, fill='toself', name=' <br>'.join(group4)))
+					radar.add_trace(go.Scatterpolar(r=r_4, theta=categories, fill='toself', name='{} <br>({}Respondents)'.\
+					format(' <br>'.join(group4),len(data[data[category].isin(group4)]))))
 					maxi=max(maxi,r_4.max())
 			
 			
 			radar.update_layout(polar=dict(radialaxis=dict(visible=True,range=[0, maxi])),showlegend=True)
 			radar.update_layout(margin={"r": 20, "t": 20, "l": 20, "b": 20})
-			
 			
 			
 			col2.plotly_chart(radar,use_container_width=True)
