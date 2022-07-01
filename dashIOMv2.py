@@ -44,7 +44,7 @@ def main():
 	axiom_html = get_img_with_href('logoAxiom.png', 'https://axiom.co.ke')
 
 	st.sidebar.markdown(axiom_html, unsafe_allow_html=True)
-	st.sidebar.markdown(html_link("Other Dashboard",'http://axiomdashboard.com/shap.html'), unsafe_allow_html=True)
+	st.sidebar.markdown(html_link("Other Dashboard",'https://axiommeltd10.shinyapps.io/IOMSomaliaBaseline_Dashboard/#section-demographics'), unsafe_allow_html=True)
 	#st.sidebar.image(img1,width=200)
 	st.sidebar.title("")
 	st.sidebar.title("")
