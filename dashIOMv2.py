@@ -146,7 +146,7 @@ def main():
 			sub_categ=st.sidebar.selectbox('Select what you want to look at at district level:',\
 			list(soustableau_correl['categories2'].unique())[::-1])
 			soustableau_correl = correl[correl['categories2']==sub_categ]
-		elif sub_topics==
+		elif sub_topics=='Primary Source of Income':
 			st.write("It is to note that we have similar correlations at district and school level and \
 			that there is also a strong correlation at these levels with primary income source. \
 			Therefore, it is difficult to draw conclusions from the following correlations: Are there a consequence of\
