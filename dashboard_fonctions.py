@@ -238,8 +238,8 @@ def pourcent2(abscisse, ordonnee, dataf, codes, legendtitle='', xaxis='',second=
 def show_data(k,sub_topic,row,df,codes,categs=None):
     st.subheader(row['title'])
     if row['Comment']==row['Comment']:
-	st.write(row['Comment'])
-	st.write("The radar displays the mean value for each category.")
+		st.write(row['Comment'])
+		st.write("The radar displays the mean value for each category.")
     if row['graphtype'] == 'treemap':
         # fig=go.Figure()
         # fig.add_trace(go.Treemap(branchvalues='total',labels=data[quest.iloc[i]['variable_x']],parents=data[quest.iloc[i]['variable_y']],
