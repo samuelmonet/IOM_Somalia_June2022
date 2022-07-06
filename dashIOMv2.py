@@ -21,7 +21,7 @@ def load_data():
 	continues = pickle.load(open("cont_feat.p", "rb"))
 	data = pd.read_csv('viz.csv', sep='\t')
 	data.drop([i for i in data if 'Unnamed' in i], axis=1, inplace=True)
-	correl = pd.read_excel('graphs.xlsx',index_col=0)
+	correl = pd.read_csv('graphs.csv',index_col=0,sep=';')
 	questions = pd.read_csv('questions.csv',index_col=0)
 	questions.drop([i for i in questions if 'Unnamed' in i],axis=1,inplace=True)
 	questions.columns=['parent', 'type', 'Treatment', 'Other','question']
